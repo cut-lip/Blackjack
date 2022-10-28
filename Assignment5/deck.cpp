@@ -8,6 +8,10 @@
 
 #include "deck.h"
 
+// !!!!!!!!!!!!!!!!!!!!
+// Why do I have to use name qualifier here but not in card.cpp????????????????????
+// I THINK BECAUSE its only for public methods and these are all public
+
 
 deck::deck() {
 	// Initialize empty vector with 54 elements
