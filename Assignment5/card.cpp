@@ -1,7 +1,7 @@
 /*
 	Nicholas Cutlip
 	CS 361
-	Assignment #6
+	Assignment #7
 	card.cpp
 	Cpp file for the definitions of the card class.
 */
@@ -10,6 +10,8 @@
 
 // Draw value for DrawCard
 void card::DrawValue(cards::cardValue val) {
+    // Switch on all possible values of val (cardValue enum)
+    // Print the given card's value
     switch (val) {
     case cards::cardValue::Ace:
         cout << 'A';
@@ -55,6 +57,8 @@ void card::DrawValue(cards::cardValue val) {
 
 // Draw suit for DrawCard
 void card::DrawSuit(cards::cardSuit suit) {
+    // Switch on all possible values of suit
+    // Print the given card's suit
     switch (suit) {
     case cards::cardSuit::Spade:
         cout << char(spade);
@@ -71,31 +75,38 @@ void card::DrawSuit(cards::cardSuit suit) {
     }
 }
 
-// Initialize card with given value and suit
+// Construct card with given value and suit
 card::card(cards::cardValue val, cards::cardSuit suit)
 {
     this->val = val;
     this->suit = suit;
 }
 
-// Default constructor
-card::card() = default;
+void card() {}
 
 // Set the value of this card object
-void card::setCardValue(cards::cardValue val)
-{
+void card::setCardValue(cards::cardValue val) {
     this->val = val;
 }
 
+// Return the card value
+cards::cardValue card::getCardValue() {
+    return val;
+}
+
 // Set the suit of this card object
-void card::setCardSuit(cards::cardSuit suit)
-{
+void card::setCardSuit(cards::cardSuit suit) {
     this->suit = suit;
 }
 
+// Return the card suit
+cards::cardSuit card::getCardSuit() {
+    return suit;
+}
+
 // Prints a visual representation of the card object to the console
-void card::drawCard()
-{
+void card::drawCard() {
+
     // Draw top border of card
     cout << char(topLBorder);
     for (int i = 1; i < 11; i++) {

@@ -1,7 +1,7 @@
 /*
     Nicholas Cutlip
     CS 361
-    Assignment #6
+    Assignment #7
     card.h
     Header file for the declarations of the card class.
 */
@@ -29,7 +29,7 @@ namespace cards {
 
     // cardValue represents all of the potential values for cards in the deck
     enum class cardValue {
-        Ace, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten,
+        Ace = 1, Two, Three, Four, Five, Six, Seven, Eight, Nine, Ten,
         Jack, Queen, King
     };
 
@@ -77,17 +77,23 @@ private:
     void DrawSuit(cards::cardSuit suit);
 
 public:
+    // Default constructor
+    card() {};
+
     // Initialize card with given value and suit
     card(cards::cardValue val, cards::cardSuit suit);
-
-    // Default constructor
-    card();
 
     // Set the value of this card object
     void setCardValue(cards::cardValue val);
 
+    // Either implement these methods, or use protected access modifiers??
+    cards::cardValue getCardValue();
+
     // Set the suit of this card object
     void setCardSuit(cards::cardSuit suit);
+
+    // Either implement these methods, or use protected access modifiers??
+    cards::cardSuit getCardSuit();
 
     // Prints a visual representation of the card object to the console
     void drawCard();

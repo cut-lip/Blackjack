@@ -1,7 +1,7 @@
 /*
 	Nicholas Cutlip
 	CS 361
-	Assignment #6
+	Assignment #7
 	deck.h
 	Header file for the declarations of the deck class.
 */
@@ -15,7 +15,7 @@
 
 class deck {
 public:
-	// deck constructor
+	// Construct 
 	deck();
 
 	// Return a random card from the deck (removes card from deck)
