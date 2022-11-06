@@ -8,7 +8,8 @@
 
 #include "game.h"
 
-game::game()
-{
+// Constructor to set initial game state
+//game::game()
+//{
 
-}
+//}

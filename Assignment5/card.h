@@ -77,9 +77,6 @@ private:
     void DrawSuit(cards::cardSuit suit);
 
 public:
-    // Default constructor
-    card() {};
-
     // Initialize card with given value and suit
     card(cards::cardValue val, cards::cardSuit suit);
 

@@ -82,8 +82,6 @@ card::card(cards::cardValue val, cards::cardSuit suit)
     this->suit = suit;
 }
 
-void card() {}
-
 // Set the value of this card object
 void card::setCardValue(cards::cardValue val) {
     this->val = val;

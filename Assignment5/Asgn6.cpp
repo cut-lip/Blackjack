@@ -5,11 +5,18 @@
 #include "card.h"
 #include "deck.h"
 #include "hand.h"
+#include "game.h"
 
 using namespace std;
 
 int main()
 {
+	game myGame = game();
+}
+
+
+
+	/*
 	deck myDeck;
 	hand myHand;
 
@@ -26,6 +33,7 @@ int main()
 	cout << "The hand's low  value is " << myHand.handValueLow() << endl;
 	cout << "The hand's high value is " << myHand.handValueHigh() << endl;
 }
+*/
 
 
 
