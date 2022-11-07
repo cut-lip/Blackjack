@@ -102,8 +102,10 @@ cards::cardSuit card::getCardSuit() {
     return suit;
 }
 
-// Prints a visual representation of the card object to the console
-void card::drawCard() {
+// Returns a string representation of the card object to the ostream
+string card::drawCard() {
+    
+    std::string s = "";
 
     // Draw top border of card
     cout << char(topLBorder);
@@ -152,4 +154,15 @@ void card::drawCard() {
         cout << char(horBorder);
     }
     cout << char(botRBorder) << endl;
+
+    return s;
+}
+
+// Overload extraction operator ( << ) to send visual representation of card to cout
+ostream& operator<<(ostream& os, const card& c)
+{
+    // Must return string from drawCard?
+    //os << c.drawCard();
+
+    return os;
 }

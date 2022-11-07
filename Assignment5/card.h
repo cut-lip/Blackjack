@@ -10,6 +10,7 @@
 #pragma once
 
 #include <iostream>
+#include <string>
 
 using namespace std;
 
@@ -80,6 +81,9 @@ public:
     // Initialize card with given value and suit
     card(cards::cardValue val, cards::cardSuit suit);
 
+    // Overload extraction operator ( << ) to send visual representation of card to cout
+    friend ostream& operator<<(ostream& os, const card& card);
+
     // Set the value of this card object
     void setCardValue(cards::cardValue val);
 
@@ -93,5 +97,5 @@ public:
     cards::cardSuit getCardSuit();
 
     // Prints a visual representation of the card object to the console
-    void drawCard();
+    string drawCard();
 };

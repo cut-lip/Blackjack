@@ -1,5 +1,10 @@
-// Deck.cpp : This file contains the 'main' function. Program execution begins and ends there.
-//
+/*
+	Nicholas Cutlip
+	CS 361
+	Assignment #7
+	main.cpp
+	Main driver method for blackjack package.
+*/
 
 #include <iostream>
 #include "card.h"
@@ -11,6 +16,7 @@ using namespace std;
 
 int main()
 {
+	// Create an instance of the Blackjack game
 	game myGame = game();
 }
 

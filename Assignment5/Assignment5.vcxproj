@@ -127,7 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Asgn6.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="card.cpp" />
     <ClCompile Include="deck.cpp" />
     <ClCompile Include="game.cpp" />
