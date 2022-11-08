@@ -8,72 +8,131 @@
 
 #include "card.h"
 
+// Overload extraction operator ( << ) to send visual representation of card to cout
+ostream& operator << (ostream& os, const card& c)
+{
+    // Draw top border of card
+    cout << char(topLBorder);
+    for (int i = 1; i < 11; i++) {
+        cout << char(horBorder);
+    }
+    cout << char(topRBorder) << endl;
+    
+    // Draw second line, with value followed by suit adjacent to left border
+    cout << char(verBorder);
+    int spaces = 0;
+    c.DrawValue(c.val, os);
+    if (c.val != cards::cardValue::Ten) {
+        spaces = 7;
+    }
+    else {
+        spaces = 6;
+    }
+    c.DrawSuit(c.suit, os);
+    for (int i = 0; i <= spaces; i++) {
+        cout << " ";
+    }
+    cout << char(verBorder) << endl;
+
+    // Draw inner lines of card
+    for (int i = 0; i < 7; i++) {
+        cout << char(verBorder);
+        for (int i = 0; i < 10; i++) {
+            cout << " ";
+        }
+        cout << char(verBorder) << endl;
+    }
+
+    // Draw second to last line, with value and suit printed adjacent to right border
+    cout << char(verBorder);
+    for (int i = 0; i <= spaces; i++) {
+        cout << " ";
+    }
+    c.DrawSuit(c.suit, os);
+    c.DrawValue(c.val, os);
+    cout << char(verBorder) << endl;
+
+    // Draw bottom border of card
+    cout << char(botLBorder);
+    for (int i = 0; i < 10; i++) {
+        cout << char(horBorder);
+    }
+    cout << char(botRBorder) << endl;
+
+    // Return the ostream reference containing the card visualization
+    return os;
+}
+
+
 // Draw value for DrawCard
-void card::DrawValue(cards::cardValue val) {
+void card::DrawValue(cards::cardValue val, ostream& os) const {
     // Switch on all possible values of val (cardValue enum)
     // Print the given card's value
     switch (val) {
     case cards::cardValue::Ace:
-        cout << 'A';
+        os << 'A';
         break;
     case cards::cardValue::Two:
-        cout << '2';
+        os << '2';
         break;
     case cards::cardValue::Three:
-        cout << '3';
+        os << '3';
         break;
     case cards::cardValue::Four:
-        cout << '4';
+        os << '4';
         break;
     case cards::cardValue::Five:
-        cout << '5';
+        os << '5';
         break;
     case cards::cardValue::Six:
-        cout << '6';
+        os << '6';
         break;
     case cards::cardValue::Seven:
-        cout << '7';
+        os << '7';
         break;
     case cards::cardValue::Eight:
-        cout << '8';
+        os << '8';
         break;
     case cards::cardValue::Nine:
-        cout << '9';
+        os << '9';
         break;
     case cards::cardValue::Ten:
-        cout << "10";
+        os << "10";
         break;
     case cards::cardValue::Jack:
-        cout << 'J';
+        os << 'J';
         break;
     case cards::cardValue::Queen:
-        cout << 'Q';
+        os << 'Q';
         break;
     case cards::cardValue::King:
-        cout << 'K';
+        os << 'K';
         break;
     }
 }
 
 // Draw suit for DrawCard
-void card::DrawSuit(cards::cardSuit suit) {
+void card::DrawSuit(cards::cardSuit suit, ostream& os) const {
     // Switch on all possible values of suit
     // Print the given card's suit
     switch (suit) {
     case cards::cardSuit::Spade:
-        cout << char(spade);
+        os << char(spade);
         break;
     case cards::cardSuit::Club:
-        cout << char(club);
+        os << char(club);
         break;
     case cards::cardSuit::Diamond:
-        cout << char(diamond);
+        os << char(diamond);
         break;
     case cards::cardSuit::Heart:
-        cout << char(heart);
+        os << char(heart);
         break;
     }
 }
+
+// Default constructor
+card::card() {}
 
 // Construct card with given value and suit
 card::card(cards::cardValue val, cards::cardSuit suit)
@@ -102,67 +161,3 @@ cards::cardSuit card::getCardSuit() {
     return suit;
 }
 
-// Returns a string representation of the card object to the ostream
-string card::drawCard() {
-    
-    std::string s = "";
-
-    // Draw top border of card
-    cout << char(topLBorder);
-    for (int i = 1; i < 11; i++) {
-        cout << char(horBorder);
-    }
-    cout << char(topRBorder) << endl;
-
-    // Draw second line, with value followed by suit adjacent to left border
-    cout << char(verBorder);
-    int spaces = 0;
-    DrawValue(val);
-    if (val != cards::cardValue::Ten) {
-        spaces = 7;
-    }
-    else {
-        spaces = 6;
-    }
-    DrawSuit(suit);
-    for (int i = 0; i <= spaces; i++) {
-        cout << " ";
-    }
-    cout << char(verBorder) << endl;
-
-    // Draw inner lines of card
-    for (int i = 0; i < 7; i++) {
-        cout << char(verBorder);
-        for (int i = 0; i < 10; i++) {
-            cout << " ";
-        }
-        cout << char(verBorder) << endl;
-    }
-
-    // Draw second to last line, with value and suit printed adjacent to right border
-    cout << char(verBorder);
-    for (int i = 0; i <= spaces; i++) {
-        cout << " ";
-    }
-    DrawSuit(suit);
-    DrawValue(this->val);
-    cout << char(verBorder) << endl;
-
-    // Draw bottom border of card
-    cout << char(botLBorder);
-    for (int i = 0; i < 10; i++) {
-        cout << char(horBorder);
-    }
-    cout << char(botRBorder) << endl;
-
-    return s;
-}
-
-// Overload extraction operator ( << ) to send visual representation of card to cout
-ostream& operator<<(ostream& os, const card& c)
-{
-    // Must return string from drawCard?
-    //os << c.drawCard();
-
-    return os;
-}

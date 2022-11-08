@@ -21,41 +21,50 @@ void hand::drawHand() {
 
 	// For each card in the hand, draw the card on the screen
 	for (card c : currentHand) {
-		c.drawCard();
+		cout << c;
 	}
 }
 
-// Return the lowest value contained by the hand
-// (returns INT_MAX if hand is empty)
+// Return the minimum value of the hand
+// (Ace is valued as 1)
 int hand::handValueLow() {
-	int low = INT_MAX;
+	int low = 0;
 
+	// Sum the values of the hand's cards
 	for (card c : currentHand) {
+		
+		// If value is face card, increment sum by 10
+		if ((int)c.getCardValue() == 10 || (int)c.getCardValue() == 11 || (int)c.getCardValue() == 12) {
+			low += 10;
 
-		// Search for the lowest value
-		if ((int)c.getCardValue() < low) {
-			low = (int)c.getCardValue();
+			// Increment sum by card value
+		} else {
+			low += (int)c.getCardValue();
 		}
 	}
 
 	return low;
 }
 
-// Return the highest value contained by the hand
-// (returns -1 if hand is empty)
+// Return the maximum total value of the hand
+// (Ace is valued as 11)
 int hand::handValueHigh() {
-	int high = -1;
+	int high = 0;
 
-	for (card c : currentHand)
-	{
-		// If hand contains an Ace, return 11
+	// Sum the values of the hand's cards
+	for (card c : currentHand) {
+
+		// If value is Ace, increment sum by 11
 		if ((int)c.getCardValue() == 1) {
-			return 11;
-		}
+			high += 11;
 
-		// Search for the highest value
-		if ((int)c.getCardValue() > high) {
-			high = (int)c.getCardValue();
+		// If value is face card, increment sum by 10
+		} else if ((int)c.getCardValue() == 10 || (int)c.getCardValue() == 11 || (int)c.getCardValue() == 12) {
+			high += 10;
+
+		// Otherwise increment sum by card value
+		} else {
+			high += (int)c.getCardValue();
 		}
 	}
 

@@ -9,8 +9,6 @@
 #pragma once
 
 #include "card.h"
-#include <cstdlib>
-#include <ctime>
 #include <vector>
 
 class deck {

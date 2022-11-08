@@ -63,7 +63,7 @@ namespace cards {
         cardSuit::Diamond,
         cardSuit::Heart
     };
-}
+};
 
 // A card object as a value and a suit associated with it
 class card {
@@ -72,17 +72,20 @@ private:
     cards::cardSuit suit;
 
     // Draw value for DrawCard
-    void DrawValue(cards::cardValue val);
+    void DrawValue(cards::cardValue val, ostream& os) const;
 
     // Draw suit for DrawCard
-    void DrawSuit(cards::cardSuit suit);
+    void DrawSuit(cards::cardSuit suit, ostream& os) const;
 
 public:
+    // Default constructor
+    card();
+    
     // Initialize card with given value and suit
     card(cards::cardValue val, cards::cardSuit suit);
 
     // Overload extraction operator ( << ) to send visual representation of card to cout
-    friend ostream& operator<<(ostream& os, const card& card);
+    friend ostream& operator << (ostream& os, const card& card);
 
     // Set the value of this card object
     void setCardValue(cards::cardValue val);
@@ -95,7 +98,4 @@ public:
 
     // Either implement these methods, or use protected access modifiers??
     cards::cardSuit getCardSuit();
-
-    // Prints a visual representation of the card object to the console
-    string drawCard();
 };

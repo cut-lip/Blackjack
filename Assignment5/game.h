@@ -31,6 +31,15 @@ private:
 	// Main game loop (started by the class constructor)
 	void mainLoop();
 
+	// Display the given hand on the console
+	void displayHand(hand currHand);
+
+	// Determine if current hand is a bust
+	bool isBust(hand currHand);
+
+	// Present the winner
+	void presentWinner(string winner);
+
 	// A single player or dealer's turn
 	// (for future use, not implemented uet in this simple version)
 	void turn();
@@ -39,8 +48,6 @@ private:
 	void hit(hand& currHand);
 
 	// --MEMBER VARIABLES--
-	// Count of current round
-	int currentRound;
 	// Name of player
 	string playerName = "";
 	// Deck of cards for use in the game

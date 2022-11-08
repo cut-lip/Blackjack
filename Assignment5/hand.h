@@ -22,12 +22,12 @@ public:
 	// Display the current hand on the screen
 	void drawHand();
 
-	// Return the lowest value contained by the hand
-	// (returns INT_MAX if hand is empty)
+	// Return the minimum value of the hand
+	// (Ace is valued as 1)
 	int handValueLow();
 
-	// Return the highest value contained by the hand
-	// (returns -1 if hand is empty)
+	// Return the maximum value of the hand
+	// (Ace is valued as 11)
 	int handValueHigh();
 
 private:
