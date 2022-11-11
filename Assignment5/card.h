@@ -72,9 +72,11 @@ private:
     cards::cardSuit suit;
 
     // Draw value for DrawCard
+    // Constant method as it does not change the data of its class
     void DrawValue(cards::cardValue val, ostream& os) const;
 
     // Draw suit for DrawCard
+    // Constant method as it does not change the data of its class
     void DrawSuit(cards::cardSuit suit, ostream& os) const;
 
 public:
@@ -82,7 +84,7 @@ public:
     card();
     
     // Initialize card with given value and suit
-    card(cards::cardValue val, cards::cardSuit suit);
+    card(cards::cardSuit suit, cards::cardValue val);
 
     // Overload extraction operator ( << ) to send visual representation of card to cout
     friend ostream& operator << (ostream& os, const card& card);

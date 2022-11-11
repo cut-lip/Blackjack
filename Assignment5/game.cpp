@@ -1,115 +1,148 @@
 /*
-	Nicholas Cutlip
-	CS 361
-	Assignment #7
-	game.cpp
-	Cpp file for the definitions of the game class.
+    Nicholas Cutlip
+    CS 361
+    Assignment #7
+    game.cpp
+    Cpp file for the definitions of the game class.
 */
 
 #include "game.h"
 
 // Constructor to set initial game state
-game::game() : gameDeck(), dealerHand(), playerHand()
-{
-	cout << "*~~ Welcome to Blackjack ~~*\n\n" << "What is your name, player?" << endl;
-	cin >> playerName;		// Seeks input for player's name
+game::game() : gameDeck(), dealerHand(), playerHand() {
+    cout << "*~~ Welcome to Blackjack ~~*\n\n" << "What is your name, player?" << endl;
+    cin >> playerName;        // Seeks input for player's name
 
-	mainLoop();
+    mainLoop();
 }
 
-// (private) Main game loop (started by the class constructor)
-// (note its not a loop yet in this simplified implementation
-void game::mainLoop()
-{
-	// Player should initially be dealt two cards
-	cout << "\n" + playerName + " is dealt two cards.\n" << endl;
-	hit(playerHand);
-	hit(playerHand);
+// Main game loop (initiated by class constructor)
+// (note it is not a loop yet in this simplified implementation)
+void game::mainLoop() {
 
-	// Display player's initial hand
-	displayHand(playerHand);
+    // Deal one card to player and display on console
+    cout << "\n" + playerName + " is dealt a card.\n" << endl;
+    hit(playerHand);
+    displayHand(playerHand, "player");
+    
+    // Deal one card to dealer and display on console
+    cout << "\nDealer is dealt a card.\n" << endl;
+    hit(dealerHand);
+    displayHand(dealerHand, "dealer");
 
-	// Determine if the player will hit or stand
-	int hitOrStand;
-	cout << "Enter (1) for Hit or (0) for Stand:" << endl;
-	cin >> hitOrStand;
+    // Deal another card to player and display player hand
+    cout << "\n" + playerName + " is dealt a card.\n" << endl;
+    hit(playerHand);
+    displayHand(playerHand, "player");
 
-	// While the player chooses to hit
-	while (hitOrStand == 1) {
-		hit(playerHand);
+    // Deal another card to dealer (don't display value)
+    cout << "\nDealer is dealt a card.\n" << endl;
+    hit(dealerHand);
 
-		displayHand(playerHand);
+    // Check if the player's hand is a blackjack
+    if (playerHand.handValueHigh() == 21) {
+        cout << "\n" << playerName << " has a blackjack. "
+            << playerName << " wins!!!" << endl;
+        return;
+    }
 
-		if (isBust(playerHand)) {
-			presentWinner("Dealer");
-			break;
-		}
+    // PLAYERS TURN:
+    // Determine if the player will hit or stand
+    int hitOrStand;
+    cout << "Enter (1) for Hit or (0) for Stand:" << endl;
+    cin >> hitOrStand;
 
-		// Determine if player will hit or stand
-		cout << "Enter (1) for Hit or (0) for Stand:" << endl;
-		cin >> hitOrStand;
-	}
+    // While the player chooses to hit
+    while (hitOrStand == 1) {
+        hit(playerHand);
 
-	// Perform dealer turn internally
-	// Deal two cards to dealer
-	hit(dealerHand);
-	hit(dealerHand);
+        displayHand(playerHand, "player");
 
+        if (isBust(playerHand)) {
+            cout << "With a hand value of " << playerHand.handValueHigh() << " " << playerName << " has busted!" << endl;
+            presentWinner("Dealer");
+            return;
+        }
 
-	// Hit the dealer's hand until it reaches the specified range ( value > 16 )
-	while (dealerHand.handValueHigh() < 17) {
-		hit(dealerHand);
-	}
+        // Determine if player will hit or stand
+        cout << "\nEnter (1) for Hit or (0) for Stand:" << endl;
+        cin >> hitOrStand;
+    }
 
-	// Check if the dealer's hand is a bust
-	if (isBust(dealerHand)) {
-		presentWinner(playerName);
-	}
-	// Otherwise, dealer stands
+    // DEALER'S TURN
+    // Display the dealer's entire hand
+    displayHand(dealerHand, "dealer");
 
-	// Compare dealer and player hand values
-	//( !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!)
-	// IS it okay for high values to be over 21 here?
+    // Check if the dealer has a blackjack
+    if (dealerHand.handValueHigh() == 21) {
+        cout << "Dealer has a blackjack. Dealer wins... :(" << endl;
+        return;
+    }
 
-	// Check if the player beat the dealer, or the other way around
-	(playerHand.handValueHigh() > dealerHand.handValueHigh()) ? (presentWinner(playerName)) : (presentWinner("dealer"));
+    // Hit the dealer's hand until it reaches the specified range ( value > 16 )
+    while (dealerHand.handValueHigh() < 17) {
+        hit(dealerHand);
+    }
+
+    // Check if the dealer's hand is a bust
+    if (isBust(dealerHand)) {
+        cout << "With a hand value of " << dealerHand.handValueHigh() << " Dealer has busted!" << endl;
+        presentWinner(playerName);
+        return;
+    }
+    // Otherwise, dealer stands
+
+    // Display the player and dealer's highest values
+    cout << "\n" << playerName << "'s highest value is " << playerHand.handValueHigh() << endl;
+    cout << "\nDealer's highest value is " << dealerHand.handValueHigh() << endl;
+
+    // Check for a tie
+    if (playerHand.handValueHigh() == dealerHand.handValueHigh()) {
+        cout << "The game is a push! " << playerName << " and Dealer tie! Woohoo!" << endl;
+        return;
+    }
+
+    // Check if the player beat the dealer, or the other way around
+    (playerHand.handValueHigh() > dealerHand.handValueHigh()) ? (presentWinner(playerName)) : (presentWinner("Dealer"));
 }
 
-// Display player's hand
-void game::displayHand(hand currHand)
-{
-	cout << playerName << "'s hand:\n";
-	playerHand.drawHand();
-	cout << endl;
+// Display given hand with identifying message
+void game::displayHand(hand currHand, string who) {
+
+    if (who == "player") {
+        cout << playerName << "'s hand:\n";
+        playerHand.drawHand();
+        cout << endl;
+    }
+    else {
+        cout <<"Dealer's hand:\n";
+        dealerHand.drawHand();
+        cout << endl;
+    }
 }
 
 // Determine if current hand is a bust
-bool game::isBust(hand currHand)
-{
-	// If high vale is over 21, so is low value
-	if (currHand.handValueLow() > 21) {
-		// Return true, currHand is a bust
-		return true;
-	}
-	
-	// Return false, currHand is not a bust
-	return false;
+bool game::isBust(hand currHand) {
+
+    bool isBust;
+    // Ternary expression to check if the hand's low value is greater than 21, or not
+    (currHand.handValueLow() > 21) ? (isBust = true) : (isBust = false);
+
+    return isBust;        // Return the result of the evaluation
 }
 
 // Present the winner
 void game::presentWinner(string winner) {
-	cout << "\n" << winner << " is the winner!" << endl;
+    cout << "\n" << winner << " is the winner!" << endl;
 }
 
+/*
 // A single player or dealer's turn
 // (for future use, not implemented yet in this simple version)
-void game::turn()
-{
-
-}
+void game::turn() {}
+*/
 
 // Deal another card to the given hand
-void game::hit(hand& currHand)		// NOTE: YOU HAD TO PASS BY REFERENCE HERE OR HAND ISN'T MODIFIED
-{
-	currHand.addCardToHand(gameDeck.dealCard());
+void game::hit(hand& currHand) {       // NOTE: YOU HAD TO PASS BY REFERENCE HERE OR HAND ISN'T MODIFIED
+    currHand.addCardToHand(gameDeck.dealCard());
 }

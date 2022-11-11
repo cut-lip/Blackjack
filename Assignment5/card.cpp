@@ -1,16 +1,16 @@
 /*
-	Nicholas Cutlip
-	CS 361
-	Assignment #7
-	card.cpp
-	Cpp file for the definitions of the card class.
+    Nicholas Cutlip
+    CS 361
+    Assignment #7
+    card.cpp
+    Cpp file for the definitions of the card class.
 */
 
 #include "card.h"
 
 // Overload extraction operator ( << ) to send visual representation of card to cout
-ostream& operator << (ostream& os, const card& c)
-{
+ostream& operator << (ostream& os, const card& c) {
+
     // Draw top border of card
     cout << char(topLBorder);
     for (int i = 1; i < 11; i++) {
@@ -65,6 +65,7 @@ ostream& operator << (ostream& os, const card& c)
 
 
 // Draw value for DrawCard
+// Constant method as it does not change the data of its class
 void card::DrawValue(cards::cardValue val, ostream& os) const {
     // Switch on all possible values of val (cardValue enum)
     // Print the given card's value
@@ -112,6 +113,7 @@ void card::DrawValue(cards::cardValue val, ostream& os) const {
 }
 
 // Draw suit for DrawCard
+// Constant method as it does not change the data of its class
 void card::DrawSuit(cards::cardSuit suit, ostream& os) const {
     // Switch on all possible values of suit
     // Print the given card's suit
@@ -135,7 +137,7 @@ void card::DrawSuit(cards::cardSuit suit, ostream& os) const {
 card::card() {}
 
 // Construct card with given value and suit
-card::card(cards::cardValue val, cards::cardSuit suit)
+card::card(cards::cardSuit suit, cards::cardValue val)
 {
     this->val = val;
     this->suit = suit;

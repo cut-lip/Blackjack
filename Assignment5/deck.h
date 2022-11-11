@@ -1,9 +1,9 @@
 /*
-	Nicholas Cutlip
-	CS 361
-	Assignment #7
-	deck.h
-	Header file for the declarations of the deck class.
+    Nicholas Cutlip
+    CS 361
+    Assignment #7
+    deck.h
+    Header file for the declarations of the deck class.
 */
 
 #pragma once
@@ -13,16 +13,16 @@
 
 class deck {
 public:
-	// Construct 
-	deck();
+    // Construct 
+    deck();
 
-	// Return a random card from the deck (removes card from deck)
-	card dealCard();
+    // Return a random card from the deck (removes card from deck)
+    card dealCard();
 
-	// Returns the current size of the deck.
-	int deckSize();
+    // Returns the current size of the deck.
+    int deckSize();
 
 private:
-	// Vector of card objects to hold the cards in the deck
-	std::vector<card> deckVec;
+    // Vector of card objects to hold the cards in the deck
+    std::vector<card> deckVec;
 };
