@@ -1,7 +1,7 @@
 /*
     Nicholas Cutlip
     CS 361
-    Assignment #7
+    Assignment #8
     deck.h
     Header file for the declarations of the hand class.
 */
@@ -24,16 +24,13 @@ public:
 
     // Return the minimum value of the hand
     // (Ace is valued as 1)
-    int handValueLow();
-
+    int handValueLow() const;
+    
     // Return the maximum value of the hand
     // (Ace is valued as 11)
-    int handValueHigh();
+    int handValueHigh() const;
 
 private:
     // Vector to hold the cards currently contained by this hand obect
     std::vector<card> currentHand;
-
-    // This causes a bunch of bugs...
-    //std::unique_ptr<vector<card>> currentHand;
 };

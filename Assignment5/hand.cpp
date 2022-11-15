@@ -1,7 +1,7 @@
 /*
     Nicholas Cutlip
     CS 361
-    Assignment #7
+    Assignment #8
     deck.h
     Cpp file for the declarations of the hand class.
 */
@@ -9,7 +9,7 @@
 #include "hand.h"
 
 // Construct empty hand
-hand::hand() : currentHand() {}
+hand::hand(): currentHand() {}
 
 // Add card to hand
 void hand::addCardToHand(card newCard) {
@@ -27,11 +27,11 @@ void hand::drawHand() {
 
 // Return the minimum value of the hand
 // (Ace is valued as 1)
-int hand::handValueLow() {
+int hand::handValueLow() const {
     int low = 0;
 
     // Sum the values of the hand's cards
-    for (card c : currentHand) {
+    for (const card& c : currentHand) {
         
         // If value is face card, increment sum by 10
         if ((int)c.getCardValue() == 10 || (int)c.getCardValue() == 11 || (int)c.getCardValue() == 12) {
@@ -48,7 +48,7 @@ int hand::handValueLow() {
 
 // Return the maximum total value of the hand
 // (Ace is valued as 11)
-int hand::handValueHigh() {
+int hand::handValueHigh() const {
     int high = 0;
 
     // Sum the values of the hand's cards

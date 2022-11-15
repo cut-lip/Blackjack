@@ -1,70 +1,24 @@
 /*
     Nicholas Cutlip
     CS 361
-    Assignment #7
+    Assignment #8
     card.cpp
     Cpp file for the definitions of the card class.
 */
 
 #include "card.h"
 
-// Overload extraction operator ( << ) to send visual representation of card to cout
+// Overload insertion operator ( << ) to send visual representation of card to cout
 ostream& operator << (ostream& os, const card& c) {
-
-    // Draw top border of card
-    cout << char(topLBorder);
-    for (int i = 1; i < 11; i++) {
-        cout << char(horBorder);
-    }
-    cout << char(topRBorder) << endl;
-    
-    // Draw second line, with value followed by suit adjacent to left border
-    cout << char(verBorder);
-    int spaces = 0;
     c.DrawValue(c.val, os);
-    if (c.val != cards::cardValue::Ten) {
-        spaces = 7;
-    }
-    else {
-        spaces = 6;
-    }
     c.DrawSuit(c.suit, os);
-    for (int i = 0; i <= spaces; i++) {
-        cout << " ";
-    }
-    cout << char(verBorder) << endl;
+    os << endl;
 
-    // Draw inner lines of card
-    for (int i = 0; i < 7; i++) {
-        cout << char(verBorder);
-        for (int i = 0; i < 10; i++) {
-            cout << " ";
-        }
-        cout << char(verBorder) << endl;
-    }
-
-    // Draw second to last line, with value and suit printed adjacent to right border
-    cout << char(verBorder);
-    for (int i = 0; i <= spaces; i++) {
-        cout << " ";
-    }
-    c.DrawSuit(c.suit, os);
-    c.DrawValue(c.val, os);
-    cout << char(verBorder) << endl;
-
-    // Draw bottom border of card
-    cout << char(botLBorder);
-    for (int i = 0; i < 10; i++) {
-        cout << char(horBorder);
-    }
-    cout << char(botRBorder) << endl;
-
-    // Return the ostream reference containing the card visualization
+    // Return the ostream reference
     return os;
 }
 
-
-// Draw value for DrawCard
+// Draw value for insertion operator overload
 // Constant method as it does not change the data of its class
 void card::DrawValue(cards::cardValue val, ostream& os) const {
     // Switch on all possible values of val (cardValue enum)
@@ -112,7 +66,7 @@ void card::DrawValue(cards::cardValue val, ostream& os) const {
     }
 }
 
-// Draw suit for DrawCard
+// Draw suit for insertion operator overload
 // Constant method as it does not change the data of its class
 void card::DrawSuit(cards::cardSuit suit, ostream& os) const {
     // Switch on all possible values of suit
@@ -149,7 +103,7 @@ void card::setCardValue(cards::cardValue val) {
 }
 
 // Return the card value
-cards::cardValue card::getCardValue() {
+cards::cardValue card::getCardValue() const {
     return val;
 }
 

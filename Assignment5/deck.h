@@ -1,7 +1,7 @@
 /*
     Nicholas Cutlip
     CS 361
-    Assignment #7
+    Assignment #8
     deck.h
     Header file for the declarations of the deck class.
 */

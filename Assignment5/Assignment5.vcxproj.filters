@@ -15,7 +15,7 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="blackjack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="card.cpp">
@@ -27,9 +27,6 @@
     <ClCompile Include="hand.cpp">
       <Filter>Resource Files</Filter>
     </ClCompile>
-    <ClCompile Include="game.cpp">
-      <Filter>Resource Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="card.h">
@@ -39,9 +36,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="hand.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

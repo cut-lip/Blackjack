@@ -1,7 +1,7 @@
 /*
     Nicholas Cutlip
     CS 361
-    Assignment #7
+    Assignment #8
     card.h
     Header file for the declarations of the card class.
 */
@@ -86,14 +86,14 @@ public:
     // Initialize card with given value and suit
     card(cards::cardSuit suit, cards::cardValue val);
 
-    // Overload extraction operator ( << ) to send visual representation of card to cout
+    // Overload insertion operator ( << ) to send visual representation of card to cout
     friend ostream& operator << (ostream& os, const card& card);
 
     // Set the value of this card object
     void setCardValue(cards::cardValue val);
 
     // Either implement these methods, or use protected access modifiers??
-    cards::cardValue getCardValue();
+    cards::cardValue getCardValue() const;
 
     // Set the suit of this card object
     void setCardSuit(cards::cardSuit suit);

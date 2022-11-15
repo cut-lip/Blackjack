@@ -1,7 +1,7 @@
 /*
     Nicholas Cutlip
     CS 361
-    Assignment #7
+    Assignment #8
     deck.cpp
     Cpp file for the definitions of the deck class.
 */
