@@ -16,6 +16,18 @@ public:
     // Construct empty hand object
     hand();
 
+    // Overload less than operator ( < )
+    friend bool operator < (const hand& hand1, const hand& hand2);
+
+    // Overload greater than operator ( > )
+    friend bool operator > (const hand& hand1, const hand& hand2);
+
+    // Overload equality operator ( == )
+    friend bool operator == (const hand& hand1, const hand& hand2);
+
+    // Evaluate current best hand value based off of handValueHigh() and handValueLow()
+    int handValue(hand currHand);
+
     // Add card to hand
     void addCardToHand(card newCard);
 

@@ -25,6 +25,33 @@ void hand::drawHand() {
     }
 }
 
+// Overload less than operator ( < )
+bool operator < (const hand& hand1, const hand& hand2) {
+
+}
+
+// Overload greater than operator ( > )
+bool operator > (const hand& hand1, const hand& hand2) {
+
+}
+
+// Overload equality operator ( == )
+bool operator == (const hand& hand1, const hand& hand2) {
+
+}
+
+// Evaluate current best hand value based off of handValueHigh() and handValueLow()
+int hand::handValue(hand currHand) {
+
+    // Make into ternary expression
+    if (this->handValueHigh() < 22) {     // Less than 21 or less than 22?
+        return handValueHigh();
+    }
+    else {
+        return handValueLow();
+    }
+}
+
 // Return the minimum value of the hand
 // (Ace is valued as 1)
 int hand::handValueLow() const {
@@ -47,16 +74,18 @@ int hand::handValueLow() const {
 }
 
 // Return the maximum total value of the hand
-// (Ace is valued as 11)
+// (First Ace is valued as 11)
 int hand::handValueHigh() const {
     int high = 0;
+    bool aceFound = false;
 
     // Sum the values of the hand's cards
     for (card c : currentHand) {
 
-        // If value is Ace, increment sum by 11
-        if ((int)c.getCardValue() == 1) {
+        // If value is first Ace encountered, increment sum by 11
+        if (aceFound && (int)c.getCardValue() == 1) {
             high += 11;
+            aceFound = true;
 
         // If value is face card, increment sum by 10
         } else if ((int)c.getCardValue() == 10 || (int)c.getCardValue() == 11 || (int)c.getCardValue() == 12) {
